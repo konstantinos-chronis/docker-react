@@ -1,0 +1,20 @@
+version: '3'
+services:
+  web:
+    build: 
+      context: . #where to get the files for docker-compose
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+     - /app/node_modules #will map this directory
+     - .:/app #to this directory in the container
+  tests:
+    build: 
+      context: . #where to get the files for docker-compose
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules 
+      - .:/app 
+    command: ["npm", "run", "test"] #overrides the command of the Dockckerfile
+

@@ -10,4 +10,4 @@ before_install:
 
 #commands that needed to run the test suite
 script:
-  - docker run konstantinos-chronis/docker-react npm run test -- --coverage
+  - docker run -e CI=true konstantinos-chronis/docker-react npm run test

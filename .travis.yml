@@ -11,3 +11,24 @@ before_install:
 #commands that needed to run the test suite
 script:
   - docker run -e CI=true konstantinos-chronis/docker-react npm run test
+
+#what to do when deploying in AWS
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2 #add the region from the url in AWS
+  app: "docker-react" #the name of the application in AWS
+  env: "DockerReact-env" #the environment
+  bucket_name: elasticbeanstalk-us-east-2-852510831905 #hard drive (bucket) in AWS
+  bucket_path: "docker-react" #by default the first time it is set based on the app name
+  #deploy when pushing changes to the master
+  on:
+    branch: master
+  access_key_id:
+    secure: "$AWS_ACCESS_KEY"
+  secrect_access_key: 
+    secure: "$AWS_SECRET_KEY"
+
+
+ #Secret access key NUFzx8LCtRObss58Qo0dyGDW3CGY/OwbPuNrWuGY
+
+ #Password $vgkCyYvhf!Z
